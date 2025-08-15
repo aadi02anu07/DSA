@@ -11,11 +11,33 @@ public class DataTypes {
          *  char - 2
          *  boolean - 1 */
 
-        byte ages = 12;
-        int phone = 1234567890;
-        long phone2 = 1234567890000L;
-        float pi = 3.14F;
+        //byte is used for small numbers
+        byte ages = 12; // 1 byte
+        System.out.println("Age: " + ages);
+
+        //char is used for single characters
         char letter = '@';
-        boolean isAdult = false;
+        System.out.println("Letter: " + letter);
+
+        //boolean is used for true/false values
+        boolean isAdult = true;
+        System.out.println("Is Adult: " + isAdult);
+
+        //float is used for decimal numbers
+        float pi = 3.14F;
+        System.out.println("Pi: " + pi);
+
+        //int is used for larger numbers
+        int phone = 1234567890;
+        System.out.println("Phone: " + phone);
+        
+        //long is used for larger numbers
+        long phone2 = 1234567890000L;
+        System.out.println("Phone2: " + phone2);
+        
+        //double is used for larger decimal numbers
+        short n = 240;
+        System.err.println("Short: " + n);
+
     }
 }
