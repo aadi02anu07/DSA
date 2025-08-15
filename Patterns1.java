@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Patterns {
+public class Patterns1 {
 
     // Function to print a pattern of stars in a right-angled triangle
     public static void pat1(int n) {

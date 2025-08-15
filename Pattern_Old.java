@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Pattern {
+public class Pattern_Old {
 
     public static void nPattern1(int n) {
         for (int i = 0; i < n; i++) {
