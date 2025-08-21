@@ -1,6 +1,6 @@
-import java.util.Scanner;
 
 public class functions {
+
     //Function without parameters
     //This function prints Hello my World!!!!!!!!!!!!!! as output
     public static void World() {
@@ -15,9 +15,19 @@ public class functions {
         return sum; // Return the calculated sum
     }
     
-    public static void main(String args[]) {
-        // World();        //function call
+    public static void swap(int a, int b) {
+        //swap
+        int temp = a; // Store the value of a in a temporary variable
+        a = b; // Assign the value of b to a
+        b = temp; // Assign the value of temp (original a) to b
+    
+        System.out.println("After swapping, a = " + a + " and b = " + b); // Print the swapped values
         
+    }
+
+    public static void main(String args[]) {
+        /*
+        World();        //function call
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter first number: ");
         int a=sc.nextInt();                                  //taking input from user
@@ -26,5 +36,10 @@ public class functions {
         sc.close();                                          // Closing the scanner to prevent resource leak
         int Sum = sum2(a,b);                                 //arguments
         System.out.println("The sum of " + a + " and " + b + " is: " + Sum );
+        */                             //remove comment to run
+        
+        //swap -value exchange
+        int a = 10, b = 20;
+        swap(a, b); // Call the swap function with a and b as arguments
     }
 }
