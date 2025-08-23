@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 public class functions {
 
     // Function without parameters
@@ -112,12 +112,12 @@ public class functions {
         }
         System.out.print("Decimal of " + myNum + " is " + decNum);
     }
-    
+
     public static void DecToBin(int Dec) {
-        int myNum=Dec;
+        int myNum = Dec;
         int pow = 0;
         int Bin = 0;
-        
+
         while (Dec > 0) {
             int rem = Dec % 2;
             Bin = Bin + (rem * (int) Math.pow(10, pow));
@@ -128,53 +128,48 @@ public class functions {
     }
 
     public static void main(String args[]) {
-        /*
-         * World(); //function call
-         * Scanner sc = new Scanner(System.in);
-         * System.out.print("Enter first number: ");
-         * int a=sc.nextInt(); //taking input from user
-         * System.out.print("Enter second number: ");
-         * int b=sc.nextInt(); //taking input from user
-         * sc.close(); // Closing the scanner to prevent resource leak
-         * int Sum = sum2(a,b); //arguments
-         * System.out.println("The sum of " + a + " and " + b + " is: " + Sum );
-         * 
-         * //swap -value exchange
-         * int a = 10, b = 20;
-         * swap(a, b); // Call the swap function with a and b as arguments
-         * 
-         * //multiply
-         * int product = prod(a, b);
-         * System.out.println("The product of " + a + " and " + b + " is: " + product);
-         * // Print the product of a and b
-         * 
-         * //factorial
-         * int N = 4; // Example value for factorial calculation
-         * int fact = factorial(N); // Calculate the factorial of n
-         * System.out.println("The factorial of " + n + " is: " + fact); // Print the
-         * factorial result
-         * 
-         * //binomial coefficient
-         * int n = 5; // Example value for n in binomial coefficient calculation
-         * int r = 2; // Example value for r in binomial coefficient calculation
-         * System.out.println("The binomial coefficient =" + bino(n, r)); // Print the
-         * binomial coefficient result
-         * 
-         * //function overloading
-         * int x = 2, y = 3, z = 4;
-         * System.out.println("The product of " + x + " and " + y + " is: " +
-         * multiply(x, y)); // Call the multiply function with two arguments
-         * System.out.println("The product of " + x + ", " + y + ", and " + z + " is: "
-         * + multiply(x, y, z)); // Call the multiply function with three arguments
-         * float p = 2.5f, q = 3.5f;
-         * System.out.println("The product of " + p + " and " + q + " is: " +
-         * multiply(p, q));
-         * System.out.println("Is prime?: " + isPrime(6));
-         * System.out.println("Is prime?: " + OptisPrime(6));
-         * PrintPrime(20);
-         * BinToDec(101);
-         ********************************** remove comment to run
-         *****************************/
+        
+        World(); //function call
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter first number: ");
+        int a=sc.nextInt(); //taking input from user
+        System.out.print("Enter second number: ");
+        int b=sc.nextInt(); //taking input from user
+        sc.close(); // Closing the scanner to prevent resource leak
+        int Sum = sum2(a,b); //arguments
+        System.out.println("The sum of " + a + " and " + b + " is: " + Sum );
+         
+        //swap -value exchange
+        int A = 10, B = 20;
+        swap(A, B); // Call the swap function with a and b as arguments
+         
+        //multiply
+        int product = prod(a, b);
+        System.out.println("The product of " + a + " and " + b + " is: " + product);
+        // Print the product of a and b
+         
+        //factorial
+        int N = 4; // Example value for factorial calculation
+        int fact = factorial(N); // Calculate the factorial of n
+        System.out.println("The factorial of " + N + " is: " + fact); // Print the factorial result
+         
+        //binomial coefficient
+        int n = 5; // Example value for n in binomial coefficient calculation
+        int r = 2; // Example value for r in binomial coefficient calculation
+        System.out.println("The binomial coefficient =" + bino(n, r)); // Print the binomial coefficient result
+         
+        //function overloading
+        int x = 2, y = 3, z = 4;
+        System.out.println("The product of " + x + " and " + y + " is: " +
+        multiply(x, y)); // Call the multiply function with two arguments
+        System.out.println("The product of " + x + ", " + y + ", and " + z + " is: " + multiply(x, y, z)); // Call the multiply function with three arguments
+        float p = 2.5f, q = 3.5f;
+        System.out.println("The product of " + p + " and " + q + " is: " +
+        multiply(p, q));
+        System.out.println("Is prime?: " + isPrime(6));
+        System.out.println("Is prime?: " + OptisPrime(6));
+        PrintPrime(20);
+        BinToDec(101);
         DecToBin(2);
     }
 }
