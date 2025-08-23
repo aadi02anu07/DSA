@@ -91,12 +91,26 @@ public class functions {
     }
 
     public static void PrintPrime(int n) {
-        for (int i = 2 ; i <= n ; i++) {
-            if(isPrime(i)){
-                System.out.print(i+" ");
+        for (int i = 2; i <= n; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
             }
         }
-        System.out.println();
+    }
+
+    public static void BinToDec(int binNum) {
+        int myNum = binNum;
+        int pow = 0;
+        int decNum = 0;
+
+        while (binNum > 0) {
+            int lastDig = binNum % 10;
+            decNum = decNum + (lastDig * (int) Math.pow(2, pow));
+
+            pow++;
+            binNum = binNum / 10;
+        }
+        System.out.print("Decimal of " + myNum + " is " + decNum);
     }
 
     public static void main(String args[]) {
@@ -141,9 +155,11 @@ public class functions {
          * float p = 2.5f, q = 3.5f;
          * System.out.println("The product of " + p + " and " + q + " is: " +
          * multiply(p, q));
-         System.out.println("Is prime?: " + isPrime(6));
-         System.out.println("Is prime?: " + OptisPrime(6));
-         ********************************** remove comment to run *****************************/
-        PrintPrime(20);
+         * System.out.println("Is prime?: " + isPrime(6));
+         * System.out.println("Is prime?: " + OptisPrime(6));
+         * PrintPrime(20);
+         ********************************** remove comment to run
+         *****************************/
+        BinToDec(101);
     }
 }
