@@ -112,6 +112,20 @@ public class functions {
         }
         System.out.print("Decimal of " + myNum + " is " + decNum);
     }
+    
+    public static void DecToBin(int Dec) {
+        int myNum=Dec;
+        int pow = 0;
+        int Bin = 0;
+        
+        while (Dec > 0) {
+            int rem = Dec % 2;
+            Bin = Bin + (rem * (int) Math.pow(10, pow));
+            Dec = Dec / 2;
+            pow++;
+        }
+        System.out.print("Binary of " + myNum + " is " + Bin);
+    }
 
     public static void main(String args[]) {
         /*
@@ -158,8 +172,9 @@ public class functions {
          * System.out.println("Is prime?: " + isPrime(6));
          * System.out.println("Is prime?: " + OptisPrime(6));
          * PrintPrime(20);
+         * BinToDec(101);
          ********************************** remove comment to run
          *****************************/
-        BinToDec(101);
+        DecToBin(2);
     }
 }
