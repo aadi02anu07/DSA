@@ -1,7 +1,14 @@
-import java.util.*;
 
 public class ArraysCC {
+
+    public static void updateMarks(int marks[]) {
+        for (int i = 0; i < marks.length; i++) {
+            marks[i] = marks[i] + 1;
+        }
+    }
+
     public static void main(String[] args) {
+        /*
         int marks[] = new int[50];
         int marks2[] = { 1, 2, 3 };
         int marks3[] = { 4, 5, 6 };
@@ -23,6 +30,15 @@ public class ArraysCC {
         System.out.println("Math = " + marks[2]);
 
         double percentage = ((marks[0] + marks[1] + marks[2]) / 300f) * 100f;
-        System.out.print("Percentage= " + percentage + "%");
+        System.out.println("Percentage= " + percentage + "%");
+
+        System.out.println("Array Length= " + marks.length);
+         */
+
+        int marks[] = { 97, 98, 99 };
+        updateMarks(marks);
+        for (int i = 0; i < marks.length; i++) {
+            System.out.println(marks[i] + " ");
+        }
     }
 }
