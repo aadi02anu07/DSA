@@ -26,6 +26,21 @@ public class ArraysCC {
         return -1;
     }
 
+    public static int getLargest(int numbers[]){
+        int largest=Integer.MIN_VALUE;          // -infinity
+        int smallest=Integer.MAX_VALUE;          // infinity
+        for(int i = 0; i<numbers.length;i++){
+            if(largest<numbers[i]){
+                largest=numbers[i];
+            }
+            if(smallest>numbers[i]){
+                smallest=numbers[i];
+            }
+        }
+        System.out.println("Smallest value is "+smallest);
+        return largest;
+    }
+
     public static void main(String[] args) {
         /*
         int marks[] = new int[50];
@@ -70,8 +85,7 @@ public class ArraysCC {
         else{
             System.out.println("Found at index: "+index1);
         }
-        */
-
+        
         //Linear Search for String type
         String menu[]={"Dosha","Bholu Cholu","Idli","Sambar","Chatni"};
         String key2="Bholu Cholu";
@@ -82,5 +96,9 @@ public class ArraysCC {
         else{
             System.out.print("Item found at index: " + index2);
         }
+        */
+
+        int nums[]={1,2,6,3,5};
+        System.out.print("Largest value is "+getLargest(nums));
     }
 }
