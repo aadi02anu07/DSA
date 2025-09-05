@@ -1,4 +1,6 @@
 
+
+
 public class ArraysCC {
 
     public static void updateMarks(int marks[]) {
@@ -27,7 +29,7 @@ public class ArraysCC {
     }
 
     public static int getLargest(int numbers[]){
-        int largest=Integer.MIN_VALUE;          // -infinity
+        int largest=Integer.MIN_VALUE;           // -infinity
         int smallest=Integer.MAX_VALUE;          // infinity
         for(int i = 0; i<numbers.length;i++){
             if(largest<numbers[i]){
@@ -39,6 +41,27 @@ public class ArraysCC {
         }
         System.out.println("Smallest value is "+smallest);
         return largest;
+    }
+
+    //Binary search
+    //applied only on sorted array
+    public static int binarySearch(int numbers[],int key){
+        int start=0,end=numbers.length-1;
+        while(start<=end){
+            int mid=(start+end)/2;
+
+            if(numbers[mid]==key){      //found
+                return mid;
+            }
+            if(numbers[mid]<key){       //right
+                start=mid+1;
+            }
+            else{                       //left
+                end=mid-1;
+            }
+        }
+
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -96,9 +119,20 @@ public class ArraysCC {
         else{
             System.out.print("Item found at index: " + index2);
         }
-        */
-
+        
         int nums[]={1,2,6,3,5};
         System.out.print("Largest value is "+getLargest(nums));
+        */
+
+        int numbers[] = {2,4,6,8,10,12,14,16,18,20};
+        int key = 16;
+        
+        int index1=binarySearch(numbers, key);
+        if(index1==-1){
+            System.out.print("NOT FOUND");
+        }
+        else{
+            System.out.println("Found at index: "+index1);
+        }
     }
 }
