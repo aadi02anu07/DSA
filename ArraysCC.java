@@ -83,12 +83,14 @@ public class ArraysCC {
 
     public static void subArrays(int numbers[]){
         int ts=0;
+        // int EleSum=0;
         for(int i=0;i<numbers.length;i++){
             int start=i;
             for(int j = i ; j<numbers.length ;j++){
                 int end = j;
                 for(int k=start;k<=end;k++){                //print
                     System.out.print(numbers[k]+" ");       //subarray
+                    // EleSum+=numbers[k];
                 }
                 ts++;
                 System.out.println();
@@ -96,6 +98,7 @@ public class ArraysCC {
             System.out.println();
         }
         System.out.println("Total sub arrays= "+ts);
+        // System.out.println("Sum of all elements= "+EleSum);
     }
 
     public static void main(String[] args) {
