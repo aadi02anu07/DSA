@@ -1,4 +1,4 @@
-public class ArrayCC_2 {
+public class ArraysCC_2 {
 
     public static void maxSubArraySum(int numbers[]) {
         int currSum = 0;

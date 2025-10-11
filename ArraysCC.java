@@ -26,7 +26,7 @@ public class ArraysCC {
     }
 
     public static int getLargest(int numbers[]) {
-        int largest = Integer.MIN_VALUE; // -infinity
+        int largest = Integer.MIN_VALUE;  //-infinity
         int smallest = Integer.MAX_VALUE; // infinity
         for (int i = 0; i < numbers.length; i++) {
             if (largest < numbers[i]) {
@@ -82,22 +82,33 @@ public class ArraysCC {
     }
 
     public static void subArrays(int numbers[]){
-        int ts=0;
-        // int EleSum=0;
+        int ts = 0;
+        int largest = Integer.MIN_VALUE;    // -infinity
+        int smallest = Integer.MAX_VALUE;   // infinity
         for(int i=0;i<numbers.length;i++){
             int start=i;
-            for(int j = i ; j<numbers.length ;j++){
+            for(int j = i ; j<numbers.length ; j++){
                 int end = j;
-                for(int k=start;k<=end;k++){                //print
+                int EleSum=0;
+                for(int k=start ; k<=end ; k++){            //print
                     System.out.print(numbers[k]+" ");       //subarray
-                    // EleSum+=numbers[k];
+                    EleSum+=numbers[k];
                 }
+                System.out.println("  Sum= "+EleSum);
+                if (largest < EleSum) {
+                largest = EleSum;
+            }
+                if (smallest > EleSum) {
+                smallest = EleSum;
+            }
                 ts++;
                 System.out.println();
             }
             System.out.println();
         }
         System.out.println("Total sub arrays= "+ts);
+        System.out.println("Smallest sum of sub array= "+smallest);
+        System.out.println("Largest sum of sub array= "+largest);
         // System.out.println("Sum of all elements= "+EleSum);
     }
 
@@ -174,9 +185,9 @@ public class ArraysCC {
         for (int i = 0; i < numbers.length; i++) {
             System.out.print(numbers[i] + " ");
             }
-        printPairs(numbers);
+            printPairs(numbers);
             */
-        int numbers[] = { 2, 4, 6, 8, 10, 12};
+        int numbers[] = { 2, 4, 6, 8, 10};
         subArrays(numbers);
     }
 }
