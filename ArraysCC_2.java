@@ -84,12 +84,29 @@ public class ArraysCC_2 {
         return trappedWater;
     }
 
+    public static int buyandSellStocks(int price[]) {
+        int buyPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for (int i = 0; i < price.length; i++) {
+            if (buyPrice < price[i]) { // profit
+                int profit = price[i] - buyPrice; // todays profit
+                maxProfit = Math.max(maxProfit, profit); // overall max profit
+            } else {
+                buyPrice = price[i];
+            }
+        }
+        return maxProfit;
+    }
+
     public static void main(String[] args) {
         /*
-        int numbers[] = { 1, -2, 6, -1, 3 };
-        Kadans(numbers);
+         * int numbers[] = { 1, -2, 6, -1, 3 };
+         * Kadans(numbers);
+         * int Height[] = { 4, 2, 0, 6, 3, 2, 5 };
+         * System.out.println(RainWater(Height));
          */
-        int Height[] = { 4, 2, 0, 6, 3, 2, 5 };
-        System.out.println(RainWater(Height));
+        int price[] = { 7, 1, 5, 3, 6, 4 };
+        System.out.println(buyandSellStocks(price));
     }
 }
