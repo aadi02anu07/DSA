@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Sorting {
     public static void Bubble(int arr[]) {
         for (int turn = 0; turn < arr.length - 1; turn++) {
@@ -42,11 +44,11 @@ public class Sorting {
 
             // finding out the correct position to insert
             while (prev >= 0 && arr[prev] > curr) {
-                arr[prev+1] = arr[prev];
+                arr[prev + 1] = arr[prev];
                 prev--;
             }
-            //insertion
-            arr[prev+1]=curr;
+            // insertion
+            arr[prev + 1] = curr;
         }
     }
 
@@ -57,9 +59,13 @@ public class Sorting {
     }
 
     public static void main(String[] args) {
-        // int arr[] = { 5, 4, 1, 3, 2 };
-        int arr[] = { 1, 2, 3, 5, 4 };
-        Insertion(arr);
+        int arr[] = { 5, 4, 1, 3, 2 };
+        // int arr[] = { 1, 2, 3, 5, 4 };
+        // Insertion(arr);
+
+        //Collection.reverseOrder() works only on object data type not primitve
+        // Arrays.sort(arr, 0, 3,Collection.reverseOrder()); 
+        
         printarr(arr);
     }
 }
