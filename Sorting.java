@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class Sorting {
     public static void Bubble(int arr[]) {
@@ -52,6 +51,28 @@ public class Sorting {
         }
     }
 
+    public static void Counting(int arr[]) {
+        int largest = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            largest = Math.max(largest, arr[i]);
+        }
+
+        int count[] = new int[largest + 1];
+        for (int i = 0; i < arr.length; i++) {
+            count[arr[i]]++;
+        }
+
+        // sorting
+        int j = 0;
+        for (int i = 0; i < count.length; i++) {
+            while (count[i] > 0) {
+                arr[j] = i;
+                j++;
+                count[i]--;
+            }
+        }
+    }
+
     public static void printarr(int arr[]) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
@@ -59,13 +80,14 @@ public class Sorting {
     }
 
     public static void main(String[] args) {
-        int arr[] = { 5, 4, 1, 3, 2 };
+        // int arr[] = { 5, 4, 1, 3, 2 };
         // int arr[] = { 1, 2, 3, 5, 4 };
+        int arr[] = { 4, 3, 2, 4, 5, 6, 3, 4, 2, 1, 1, 7, 7 };
         // Insertion(arr);
 
-        //Collection.reverseOrder() works only on object data type not primitve
-        // Arrays.sort(arr, 0, 3,Collection.reverseOrder()); 
-        
+        // Collection.reverseOrder() works only on object data type not primitve
+        // Arrays.sort(arr, 0, 3,Collection.reverseOrder()); //Inbuilt sort
+        Counting(arr);
         printarr(arr);
     }
 }
