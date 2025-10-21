@@ -1,4 +1,3 @@
-
 public class MatricesCC {
 
     public static void search(int matrix[][], int key) {
@@ -49,7 +48,6 @@ public class MatricesCC {
             endRow--;
             endCol--;
         }
-
         System.out.println();
     }
 
@@ -70,16 +68,35 @@ public class MatricesCC {
 
     public static int DiagonalSum2(int matrix[][]) {
         int sum = 0;
-
         for (int i = 0; i < matrix.length; i++) {
             // pd
             sum += matrix[i][i];
             // sd
-            if (i != matrix.length - 1 - i) {
-                sum += matrix[i][matrix.length - i - 1];
+            if (i != matrix.length - i - 1) {
+                sum += matrix[i][matrix.length - 1 - i];
             }
         }
         return sum;
+    }
+
+    public static boolean StairSearch(int matrix[][], int key) {        //O(n+m)
+        int row = 0, col = matrix[0].length - 1;
+        while (row < matrix.length && col > 0) {
+            if (matrix[row][col] == key) {
+                System.err.print("Key found at " + "(" + row + "," + col + ")");
+                return true;
+            }
+
+            else if (key < matrix[row][col]) {
+                col--;
+            }
+
+            else {
+                row++;
+            }
+        }
+        System.out.print("Key not found!")
+        return false;
     }
 
     public static void main(String[] args) {
@@ -112,6 +129,7 @@ public class MatricesCC {
                 { 9, 10, 11, 12 },
                 { 13, 14, 15, 16 } };
         // Spiral(matrix2);
-        System.out.print(DiagonalSum2(matrix2));
+        // System.out.print(DiagonalSum2(matrix2));
+        StairSearch(matrix2, 11);
     }
 }
