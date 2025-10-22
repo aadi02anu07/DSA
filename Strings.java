@@ -65,5 +65,37 @@ public class Strings {
         System.out.println(isPalindrome(name));
         String Distance = "WNEENESENNN";
         System.out.println(Distance(Distance));
+
+        // .equals()
+        System.out.println("************** .equals() function **************");
+        String str3 = "Tony";
+        String str4 = "Tony";
+        String str5 = new String("Tony");
+
+        if (str3 == str4) {
+            System.out.println("Equal");
+        } else {
+            System.out.println("Not Equal");
+        }
+        if (str3 == str5) {
+            System.out.println("Equal");
+        } else {
+            System.out.println("Not Equal");
+        }
+        if (str3.equals(str5)) {
+            System.out.println("Equal");
+        } else {
+            System.out.println("Not Equal");
+        }
+
+        String fruits[] = { "apple", "mango", "banana" };
+
+        String largest = fruits[0];
+        for (int i = 1; i < fruits.length; i++) {
+            if (largest.compareTo(fruits[i]) < 0) {
+                largest = fruits[i];
+            }
+        }
+        System.out.println(largest);
     }
 }
