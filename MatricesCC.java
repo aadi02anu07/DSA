@@ -95,7 +95,7 @@ public class MatricesCC {
                 row++;
             }
         }
-        System.out.print("Key not found!")
+        System.out.print("Key not found!");
         return false;
     }
 
