@@ -97,5 +97,11 @@ public class Strings {
             }
         }
         System.out.println(largest);
+
+        StringBuilder sb = new StringBuilder("");
+        for (char ch = 'a'; ch <= 'z'; ch++) { // time complexity = O(26)
+            sb.append(ch);
+        }
+        System.out.println(sb);
     }
 }
