@@ -59,6 +59,38 @@ public class Strings {
         return sb.toString();
     }
 
+    public static String compress(String str) { // aaabbcccdd
+        String newStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            Integer count = 1;
+            while (i < str.length() - 1 && str.charAt(i) == str.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+            newStr += str.charAt(i);
+            if (count > 1) {
+                newStr += count.toString();
+            }
+        }
+        return newStr;
+    }
+
+    public static String compress2(String str) { // aaabbcccdd
+        StringBuilder newStr = new StringBuilder("");
+        for (int i = 0; i < str.length(); i++) {
+            Integer count = 1;
+            while (i < str.length() - 1 && str.charAt(i) == str.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+            newStr.append(str.charAt(i));
+            if (count > 1) {
+                newStr.append(count.toString());
+            }
+        }
+        return newStr.toString();
+    }
+
     public static void main(String args[]) {
         char arr[] = { 'a', 'b', 'c', 'd' };
         // defining string
@@ -124,5 +156,8 @@ public class Strings {
 
         String str6 = "hi, i am aditya";
         System.out.println(toUpperCase(str6));
+
+        String str7 = "aaabbcccdd";
+        System.out.println(compress2(str7));
     }
 }
