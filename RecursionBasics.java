@@ -56,8 +56,18 @@ public class RecursionBasics {
         return isSorted(arr, i + 1);
     }
 
+    public static int firstOcc(int arr[], int key, int i) {
+        if (i == arr.length) {
+            return -1;
+        }
+        if (arr[i] == key) {
+            return i;
+        }
+        return firstOcc(arr, key, i + 1);
+    }
+
     public static void main(String arr[]) {
-        int n = 5;
+        // int n = 5;
         // printDec(n);
         // System.out.println();
         // printInc(n);
@@ -66,7 +76,9 @@ public class RecursionBasics {
         // System.out.println("Sum of first " + n + " natural numbers is " +
         // calcSum(n));
         // System.out.println(fib(25));
-        int array[] = { 1, 2, 3, 4, 5 };
-        System.out.println(isSorted(array, 0));
+        // int array[] = { 1, 2, 3, 4, 5 };
+        // System.out.println(isSorted(array, 0));
+        int arr2[] = { 2, 5, 3, 7, 5, 8, 3, 4, 23, 4, 8, 99 };
+        System.out.println("Key is first present at " + firstOcc(arr2, 99, 0) + " index position");
     }
 }
