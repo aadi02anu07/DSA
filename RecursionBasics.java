@@ -97,6 +97,24 @@ public class RecursionBasics {
         return x * pow(x, n - 1);
     }
 
+    public static int optimizedPower(int a, int n) {// O(logn)
+        // base condition
+        if (n == 0) {
+            return 1;
+        }
+
+        // calling of inner function
+        int halfPower = optimizedPower(a, n / 2);
+        int halfPowerSq = halfPower * halfPower;
+
+        // n is odd
+        if (n % 2 != 0) {
+            halfPowerSq = a * halfPowerSq;
+        }
+
+        return halfPowerSq;
+    }
+
     public static void main(String arr[]) {
         // int n = 5;
         // printDec(n);
@@ -114,6 +132,7 @@ public class RecursionBasics {
         // index position");
         // System.out.println("Key is last present at " + lastOcc(arr2, 3, 0) + " index
         // position");
-        System.out.println("Result= " + pow(5, 3));
+        // System.out.println("Result = " + pow(5, 3));
+        System.out.println("Result = " + optimizedPower(2, 5));
     }
 }
