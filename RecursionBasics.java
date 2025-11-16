@@ -66,6 +66,37 @@ public class RecursionBasics {
         return firstOcc(arr, key, i + 1);
     }
 
+    public static int lastOcc(int arr[], int key, int i) {
+        if (i == arr.length) {
+            return -1;
+        }
+        int isFound = lastOcc(arr, key, i + 1);
+
+        if (isFound == -1 && arr[i] == key) {
+            return i;
+        }
+        /*
+         * if (isFound != -1) {
+         * return isFound;
+         * }
+         * 
+         * // check with self
+         * if (arr[i] == key) {
+         * return i;
+         * }
+         */
+
+        return isFound;
+    }
+
+    public static int pow(int x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+
+        return x * pow(x, n - 1);
+    }
+
     public static void main(String arr[]) {
         // int n = 5;
         // printDec(n);
@@ -78,7 +109,11 @@ public class RecursionBasics {
         // System.out.println(fib(25));
         // int array[] = { 1, 2, 3, 4, 5 };
         // System.out.println(isSorted(array, 0));
-        int arr2[] = { 2, 5, 3, 7, 5, 8, 3, 4, 23, 4, 8, 99 };
-        System.out.println("Key is first present at " + firstOcc(arr2, 99, 0) + " index position");
+        // int arr2[] = { 2, 5, 3, 7, 5, 8, 3, 4, 23, 4, 8, 3, 99 };
+        // System.out.println("Key is first present at " + firstOcc(arr2, 99, 0) + "
+        // index position");
+        // System.out.println("Key is last present at " + lastOcc(arr2, 3, 0) + " index
+        // position");
+        System.out.println("Result= " + pow(5, 3));
     }
 }
