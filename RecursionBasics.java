@@ -170,6 +170,20 @@ public class RecursionBasics {
         // return friendsPairing(n - 1) + (n - 1) * friendsPairing(n - 2);
     }
 
+    public static void printBinStrings(int n, int lastPlace, String str) {
+        // base case
+        if (n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+        // kaam
+        printBinStrings(n - 1, 0, str + "0");
+        if (lastPlace == 0) {
+            printBinStrings(n - 1, 1, str + "1");
+        }
+    }
+
     public static void main(String arr[]) {
         // int n = 5;
         // printDec(n);
@@ -192,6 +206,7 @@ public class RecursionBasics {
         // System.out.println(tilingProblem(5));
         // String str = "appnnacollege";
         // removeDuplicate(str, 0, new StringBuilder(""), new boolean[26]);
-        System.out.println(friendsPairing(4));
+        // System.out.println(friendsPairing(4));
+        printBinStrings(3, 0, "");
     }
 }
