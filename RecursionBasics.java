@@ -131,6 +131,23 @@ public class RecursionBasics {
         return fnm1 + fnm2;
     }
 
+    public static void removeDuplicate(String str, int idx, StringBuilder newStr, boolean map[]) {
+        if (idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+
+        // kaam
+        char currChar = str.charAt(idx);
+        if (map[currChar - 'a'] == true) {
+            // duplicate
+            removeDuplicate(str, idx + 1, newStr, map);
+        } else {
+            map[currChar - 'a'] = true;
+            removeDuplicate(str, idx + 1, newStr.append(currChar), map);
+        }
+    }
+
     public static void main(String arr[]) {
         // int n = 5;
         // printDec(n);
@@ -150,6 +167,8 @@ public class RecursionBasics {
         // position");
         // System.out.println("Result = " + pow(5, 3));
         // System.out.println("Result = " + optimizedPower(2, 5));
-        System.out.println(tilingProblem(5));
+        // System.out.println(tilingProblem(5));
+        String str = "appnnacollege";
+        removeDuplicate(str, 0, new StringBuilder(""), new boolean[26]);
     }
 }
