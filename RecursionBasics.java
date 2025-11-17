@@ -148,6 +148,28 @@ public class RecursionBasics {
         }
     }
 
+    public static int friendsPairing(int n) {
+        // base condition
+        if (n == 1 || n == 2) {
+            return n;
+        }
+
+        // choice
+        // single
+        int fnm1 = friendsPairing(n - 1);
+
+        // pair
+        int fnm2 = friendsPairing(n - 2);
+        int pairWays = (n - 1) * fnm2;
+
+        // Total ways
+        int totalWays = fnm1 + pairWays;
+        return totalWays;
+
+        // ShortCut
+        // return friendsPairing(n - 1) + (n - 1) * friendsPairing(n - 2);
+    }
+
     public static void main(String arr[]) {
         // int n = 5;
         // printDec(n);
@@ -168,7 +190,8 @@ public class RecursionBasics {
         // System.out.println("Result = " + pow(5, 3));
         // System.out.println("Result = " + optimizedPower(2, 5));
         // System.out.println(tilingProblem(5));
-        String str = "appnnacollege";
-        removeDuplicate(str, 0, new StringBuilder(""), new boolean[26]);
+        // String str = "appnnacollege";
+        // removeDuplicate(str, 0, new StringBuilder(""), new boolean[26]);
+        System.out.println(friendsPairing(4));
     }
 }
