@@ -115,6 +115,22 @@ public class RecursionBasics {
         return halfPowerSq;
     }
 
+    public static int tilingProblem(int n) {// not most optimized
+        // base case
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+
+        // kaam
+        // vertical choice
+        int fnm1 = tilingProblem(n - 1);
+
+        // horizontal choice
+        int fnm2 = tilingProblem(n - 2);
+
+        return fnm1 + fnm2;
+    }
+
     public static void main(String arr[]) {
         // int n = 5;
         // printDec(n);
@@ -133,6 +149,7 @@ public class RecursionBasics {
         // System.out.println("Key is last present at " + lastOcc(arr2, 3, 0) + " index
         // position");
         // System.out.println("Result = " + pow(5, 3));
-        System.out.println("Result = " + optimizedPower(2, 5));
+        // System.out.println("Result = " + optimizedPower(2, 5));
+        System.out.println(tilingProblem(5));
     }
 }
