@@ -83,10 +83,47 @@ public class DividenConquer {
         return i;
     }
 
+    public static int search(int arr[], int target, int si, int ei) {
+        if (si > ei) {
+            return -1;
+        }
+
+        // kaam
+        int mid = si + (ei - si) / 2;
+
+        // case FOUND
+        if (arr[mid] == target) {
+            return mid;
+        }
+
+        // mid on L1
+        if (arr[si] <= arr[mid]) {
+            // case a: left
+            if (arr[si] <= target && target <= arr[mid]) {
+                return search(arr, target, si, mid - 1);
+            } else {
+                // case b: right
+                return search(arr, target, mid + 1, ei);
+            }
+        }
+
+        // mid on L2
+        else {
+            // case c: right
+            if (arr[mid] <= target && target <= arr[ei]) {
+                return search(arr, target, mid + 1, ei);
+            } else {
+                // case d: left
+                return search(arr, target, si, mid - 1);
+            }
+        }
+    }
+
     public static void main(String args[]) {
         int arr[] = { 9, 6, 3, 5, 2, 8 };
         // mergerSort(arr, 0, arr.length - 1);
-        quickSort(arr, 0, arr.length - 1);
-        printArr(arr);
+        // quickSort(arr, 0, arr.length - 1);
+        // printArr(arr);
+        System.out.println(search(arr, 3, 0, arr.length - 1));
     }
 }
