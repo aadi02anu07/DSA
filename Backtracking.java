@@ -19,9 +19,25 @@ public class Backtracking {
         System.out.println();
     }
 
+    public static void findSubsets(String str, String ans, int i) {
+        // base case
+        if (i == str.length()) {
+            System.out.println(ans);
+            return;
+        }
+        // recursion
+        // yes choice
+        findSubsets(str, ans + str.charAt(i), i + 1);
+        // no choice
+        findSubsets(str, ans, i + 1);
+    }
+
     public static void main(String[] args) {
-        int arr[] = new int[5];
-        changeArr(arr, 0, 1);
-        printArr(arr);
+        // int arr[] = new int[5];
+        // changeArr(arr, 0, 1); // function call step
+        // printArr(arr); // backtracking step
+
+        String str = "abc";
+        findSubsets(str, "", 0);
     }
 }
