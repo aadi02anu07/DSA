@@ -92,6 +92,25 @@ public class Backtracking {
         }
     }
 
+    public static boolean nQueens1(char board[][], int row) {
+        // base case
+        if (row == board.length) {
+            printBoard(board);
+            return true;
+        }
+        // column loop
+        for (int j = 0; j < board.length; j++) {
+            if (isSafe(board, row, j)) {
+                board[row][j] = 'Q';
+                if (nQueens1(board, row + 1)) { // function call
+                    return true;
+                }
+                board[row][j] = 'x'; // backtracking step
+            }
+        }
+        return false;
+    }
+
     public static void printBoard(char board[][]) {
         System.out.println("----------Chess Board----------");
         for (int i = 0; i < board.length; i++) {
@@ -100,6 +119,19 @@ public class Backtracking {
             }
             System.out.println();
         }
+    }
+
+    public static int gridWays(int i, int j, int n, int m) {
+        // base case
+        if (i == n - 1 && j == m - 1) {// condition for last cell
+            return 1;
+        } else if (i == n || j == m) {// boundary cross condition
+            return 0;
+        }
+
+        int w1 = gridWays(i + 1, j, n, m);
+        int w2 = gridWays(i, j + 1, n, m);
+        return w1 + w2;
     }
 
     public static void main(String[] args) {
@@ -112,14 +144,22 @@ public class Backtracking {
         // findPermutation(str, "");
 
         // N queens
-        int n = 4;
-        char board[][] = new char[n][n];
-        // initialize
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                board[i][j] = 'x';
-            }
-        }
-        nQueens(board, 0);
+        // int n = 4;
+        // char board[][] = new char[n][n];
+        // // initialize
+        // for (int i = 0; i < n; i++) {
+        // for (int j = 0; j < n; j++) {
+        // board[i][j] = 'x';
+        // }
+        // }
+        // // nQueens(board, 0);
+        // if (nQueens1(board, 0)) {
+        // System.out.println("Solution is possible");
+        // } else {
+        // System.out.println("Solution is NOT possible");
+        // }
+
+        int n = 3, m = 3;
+        System.out.println(gridWays(0, 0, n, m));
     }
 }
