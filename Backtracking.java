@@ -240,7 +240,6 @@ public class Backtracking {
 
         if (sudokuSolver(sudoku, 0, 0)) {
             System.out.println("Solution exists");
-            ;
             printSudoku(sudoku);
         } else {
             System.out.println("Solution does NOT exists");
