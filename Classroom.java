@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Classroom {
     public static void swap(ArrayList<Integer> list, int idx1, int idx2) {
@@ -72,14 +71,63 @@ public class Classroom {
          * System.out.println(list);
          * swap(list, idx1, idx2);
          * System.out.println(list);
+         * 
+         * System.out.println(list);
+         * Collections.sort(list); // ascending
+         * System.out.println(list);
+         * 
+         * // descending
+         * Collections.sort(list, Collections.reverseOrder());
+         * System.out.println(list);
          */
 
-        System.out.println(list);
-        Collections.sort(list); // ascending
-        System.out.println(list);
+        // Question
+        // ArrayList<ArrayList<Integer>> mainList = new ArrayList<>();
+        // ArrayList<Integer> list4 = new ArrayList<>();
+        // list4.add(1);
+        // list4.add(2);
+        // mainList.add(list4);
 
-        // descending
-        Collections.sort(list, Collections.reverseOrder());
-        System.out.println(list);
+        // ArrayList<Integer> list5 = new ArrayList<>();
+        // list5.add(3);
+        // list5.add(4);
+        // mainList.add(list5);
+
+        // for (int i = 0; i < mainList.size(); i++) {
+        // ArrayList<Integer> currList = mainList.get(i);
+        // for (int j = 0; j < currList.size(); j++) {
+        // System.out.print(currList.get(j) + " ");
+        // }
+        // System.out.println();
+        // }
+        // System.out.println(mainList);
+
+        ArrayList<ArrayList<Integer>> mainList2 = new ArrayList<>();
+        ArrayList<Integer> list6 = new ArrayList<>();
+        ArrayList<Integer> list7 = new ArrayList<>();
+        ArrayList<Integer> list8 = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            list6.add(i * 1);
+            list7.add(i * 2);
+            list8.add(i * 3);
+        }
+
+        mainList2.add(list6);
+        mainList2.add(list7);
+        mainList2.add(list8);
+        list7.remove(3);
+        list7.remove(2);
+
+        System.out.println(mainList2);
+
+        // nested loops
+        for (int i = 0; i < mainList2.size(); i++) {
+            ArrayList<Integer> currList2 = mainList2.get(i);
+            for (int j = 0; j < currList2.size(); j++) {
+                System.out.print(currList2.get(j) + " ");
+            }
+            System.out.println();
+        }
     }
 }
