@@ -21,7 +21,7 @@ public class Classroom {
         return maxWater;
     }
 
-    // 2 pointer approach
+    // 2 pointer approach - O(n)
     public static int storeWater2(ArrayList<Integer> height) {
         int maxWater = 0;
         int lp = 0;
@@ -42,6 +42,37 @@ public class Classroom {
             }
         }
         return maxWater;
+    }
+
+    public static boolean pairSum1(ArrayList<Integer> list, int target) {
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(i) + list.get(j) == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean pairSum11(ArrayList<Integer> list, int target) {
+        int lp = 0;
+        int rp = list.size() - 1;
+        while (lp != rp) {
+            // case 1
+            if (list.get(lp) + list.get(rp) == target) {
+                return true;
+            }
+
+            // case 2
+            if (list.get(lp) + list.get(rp) < target) {
+                lp++;
+            } else {
+                // case 3
+                rp--;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -165,20 +196,30 @@ public class Classroom {
          * }
          * System.out.println();
          * }
+         * ArrayList<Integer> height = new ArrayList<>();
+         * // 1, 8, 6, 2, 5, 4, 8, 3, 7
+         * height.add(1);
+         * height.add(8);
+         * height.add(6);
+         * height.add(2);
+         * height.add(5);
+         * height.add(4);
+         * height.add(8);
+         * height.add(3);
+         * height.add(7);
+         * 
+         * System.out.println("Max water that can be stored = " + storeWater2(height));
          */
-        ArrayList<Integer> height = new ArrayList<>();
-        // 1, 8, 6, 2, 5, 4, 8, 3, 7
-        height.add(1);
-        height.add(8);
-        height.add(6);
-        height.add(2);
-        height.add(5);
-        height.add(4);
-        height.add(8);
-        height.add(3);
-        height.add(7);
 
-        System.out.println("Max water that can be stored = " + storeWater2(height));
+        ArrayList<Integer> list9 = new ArrayList<>();
+        list9.add(1); // O(1)
+        list9.add(2); // O(1)
+        list9.add(3); // O(1)
+        list9.add(4); // O(1)
+        list9.add(5); // O(1)
+        list9.add(6);
+        int target = 5;
 
+        System.out.println(pairSum11(list9, target));
     }
 }
