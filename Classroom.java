@@ -75,6 +75,37 @@ public class Classroom {
         return false;
     }
 
+    // O(n)
+    public static boolean pairSum2(ArrayList<Integer> list, int target) {
+        int bp = -1;// breaking point
+        int n = list.size();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) > list.get(i + 1)) {// breaking point
+                bp = i;
+                break;
+            }
+        }
+
+        int lp = bp + 1;// smallest
+        int rp = bp;// largest
+
+        while (lp != rp) {
+            // case 1
+            if (list.get(lp) + list.get(rp) == target) {
+                return true;
+            }
+
+            // case 2
+            if (list.get(lp) + list.get(rp) < target) {
+                lp = (lp + 1) % n;
+            } else {
+                // case 3
+                rp = (n + rp - 1) % n;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         /*
          * // ClassName objectName = new ClassName();
@@ -209,17 +240,28 @@ public class Classroom {
          * height.add(7);
          * 
          * System.out.println("Max water that can be stored = " + storeWater2(height));
+         * 
+         * ArrayList<Integer> list9 = new ArrayList<>();
+         * list9.add(1); // O(1)
+         * list9.add(2); // O(1)
+         * list9.add(3); // O(1)
+         * list9.add(4); // O(1)
+         * list9.add(5); // O(1)
+         * list9.add(6);
+         * int target = 5;
+         * 
+         * System.out.println(pairSum11(list9, target));
          */
 
-        ArrayList<Integer> list9 = new ArrayList<>();
-        list9.add(1); // O(1)
-        list9.add(2); // O(1)
-        list9.add(3); // O(1)
-        list9.add(4); // O(1)
-        list9.add(5); // O(1)
-        list9.add(6);
-        int target = 5;
+        ArrayList<Integer> list10 = new ArrayList<>();
+        list10.add(11); // O(1)
+        list10.add(15); // O(1)
+        list10.add(6); // O(1)
+        list10.add(8); // O(1)
+        list10.add(9); // O(1)
+        list10.add(10);
+        int target = 16;
 
-        System.out.println(pairSum11(list9, target));
+        System.out.println(pairSum2(list10, target));
     }
 }
