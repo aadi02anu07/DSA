@@ -70,6 +70,7 @@ public class LinkedList {
             return;
         }
         Node temp = head;
+        System.out.print("head->");
         while (temp != null) {
             System.out.print(temp.data + "->");
             temp = temp.next;
@@ -142,7 +143,6 @@ public class LinkedList {
         if (idx == -1) {
             return -1;
         }
-
         return idx + 1;
     }
 
@@ -150,20 +150,41 @@ public class LinkedList {
         return helper(head, key);
     }
 
+    public void reverse() { // O(n)
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
         ll.addFirst(1);
-        ll.addLast(3);
         ll.addLast(4);
-        ll.add(2, 9);
+        ll.addLast(5);
+        ll.addLast(6);
+        ll.addLast(7);
+        ll.add(2, 3);
         ll.print();
         ll.removeFirst();
         ll.removeLast();
         ll.print();
         System.out.println("Size of LinkedList = " + ll.size);
         System.out.println("Key present at index = " + ll.itrSearch(3));
-        System.out.println(ll.recSearch(3));
-        System.out.println(ll.recSearch(10));
+        System.out.println("Key present at index = " + ll.recSearch(4));
+        // System.out.println(ll.recSearch(10));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        ll.print();
+        ll.reverse();
+        ll.print();
+
     }
 }
