@@ -164,27 +164,136 @@ public class LinkedList {
         head = prev;
     }
 
+    public void deleteNthfromEnd(int n) {
+        int sz = 0;
+        Node temp = head;
+        while (temp != null) {
+            temp = temp.next;
+            sz++;
+        }
+
+        if (sz == n) {
+            head = head.next; // when we want to remove the first node i.e. n is equal to size of linked list.
+            return;
+        }
+
+        // sz-n
+        int i = 1;
+        int iToFind = sz - n;
+        Node prev = head;
+        while (i != iToFind) {
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+        return;
+    }
+
+    // SLow-Fast Approach
+    public Node findMid(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+        }
+        return slow; // slow is my mid
+    }
+
+    public boolean checkPalindrome() {
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        // step 1 - find mid
+        Node midNode = findMid(head);
+
+        // step 2 - reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node right = prev; // right half head
+        Node left = head; // left half head
+
+        // step 3 - check left half & right half
+        while (right != null) {
+            if (left.data != right.data) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
+    // LinkedList - 2
+    public static boolean isCycle() {   //Floyd's Cycle Finding Algorithm
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next; // +1
+            fast = fast.next.next; // +2
+            if (slow == fast) {
+                return true; // cycle exists
+            }
+        }
+        return false; // cycle doesn't exists
+    }
+
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-        ll.addFirst(2);
-        ll.addFirst(1);
-        ll.addLast(4);
-        ll.addLast(5);
-        ll.addLast(6);
-        ll.addLast(7);
-        ll.add(2, 3);
-        ll.print();
-        ll.removeFirst();
-        ll.removeLast();
-        ll.print();
-        System.out.println("Size of LinkedList = " + ll.size);
-        System.out.println("Key present at index = " + ll.itrSearch(3));
-        System.out.println("Key present at index = " + ll.recSearch(4));
-        // System.out.println(ll.recSearch(10));
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        ll.print();
-        ll.reverse();
-        ll.print();
+        /*
+         * LinkedList ll = new LinkedList();
+         * ll.addFirst(2);
+         * ll.addFirst(1);
+         * ll.addLast(4);
+         * ll.addLast(5);
+         * ll.addLast(6);
+         * ll.addLast(7);
+         * ll.add(2, 3);
+         * ll.print();
+         * ll.removeFirst();
+         * ll.removeLast();
+         * ll.print();
+         * System.out.println("Size of LinkedList = " + ll.size);
+         * System.out.println("Key present at index = " + ll.itrSearch(3));
+         * System.out.println("Key present at index = " + ll.recSearch(4));
+         * // System.out.println(ll.recSearch(10));
+         * System.out.println(
+         * "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+         * ll.print();
+         * ll.reverse();
+         * ll.print();
+         * ll.deleteNthfromEnd(2);
+         * ll.print();
+         * System.out.println(
+         * "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+         * LinkedList ll2 = new LinkedList();
+         * 
+         * ll2.addLast(1);
+         * ll2.addLast(2);
+         * ll2.addLast(2);
+         * ll2.addLast(1);
+         * 
+         * ll2.print();
+         * System.out.println(ll2.checkPalindrome());
+         */
+
+        
+        head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = head;
+        // 1->2->3->1
+        System.out.println(isCycle());
 
     }
 }
