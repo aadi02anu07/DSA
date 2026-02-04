@@ -235,7 +235,7 @@ public class LinkedList {
     }
 
     // LinkedList - 2
-    public static boolean isCycle() {   //Floyd's Cycle Finding Algorithm
+    public static boolean isCycle() { // Floyd's Cycle Finding Algorithm
         Node slow = head;
         Node fast = head;
 
@@ -247,6 +247,95 @@ public class LinkedList {
             }
         }
         return false; // cycle doesn't exists
+    }
+
+    public static void removeCycle() {
+        // detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                cycle = true;
+                break;
+            }
+        }
+        if (cycle == false) {
+            return;
+        }
+
+        // find meeting point
+        slow = head;
+        Node prev = null; // last node
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // remove cycle -> last.next=null
+        prev.next = null;
+    }
+
+    private Node getMid(Node head) {
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow; // slow = mid node
+    }
+
+    private Node merge(Node head1, Node head2) {
+        Node mergeLL = new Node(-1);
+        Node temp = mergeLL;
+
+        while (head1 != null && head2 != null) {
+            if (head1.data <= head2.data) {
+                temp.next = head1;
+                head1 = head1.next;
+                temp = temp.next;
+            } else {
+                temp.next = head2;
+                head2 = head2.next;
+                temp = temp.next;
+            }
+        }
+
+        while (head1 != null) { // if any element is remining in leftHalf and the rightHalf is already done
+            temp.next = head1;
+            head1 = head1.next;
+            temp = temp.next;
+        }
+
+        while (head2 != null) {// if any element is remining in rightHalf and the leftHalf is already done
+            temp.next = head2;
+            head2 = head2.next;
+            temp = temp.next;
+        }
+
+        return mergeLL.next; // .next to avoid that -1 dummy Node
+    }
+
+    public  Node mergeSort(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // find mid
+        Node mid = getMid(head);
+
+        // left & right MS
+        Node rightHead = mid.next;
+        mid.next = null;
+        Node newLeft = mergeSort(head);
+        Node newRight = mergeSort(rightHead);
+
+        // merge
+        return merge(newLeft, newRight);
     }
 
     public static void main(String[] args) {
@@ -285,15 +374,29 @@ public class LinkedList {
          * 
          * ll2.print();
          * System.out.println(ll2.checkPalindrome());
+         * 
+         * head = new Node(1);
+         * Node temp = new Node(2);
+         * head.next = temp;
+         * head.next.next = new Node(3);
+         * head.next.next.next = temp;
+         * // 1->2->3->1
+         * System.out.println(isCycle());
+         * removeCycle();
+         * System.out.println(isCycle());
          */
 
-        
-        head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = head;
-        // 1->2->3->1
-        System.out.println(isCycle());
+        LinkedList ll3 = new LinkedList();
+        ll3.addFirst(1);
+        ll3.addFirst(2);
+        ll3.addFirst(3);
+        ll3.addFirst(4);
+        ll3.addFirst(5);
 
+        // 5->4->3->2->1
+
+        ll3.print();
+        ll3.head = ll3.mergeSort(ll3.head); // O(nlogn)
+        ll3.print();
     }
 }
