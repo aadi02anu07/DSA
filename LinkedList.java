@@ -321,7 +321,7 @@ public class LinkedList {
         return mergeLL.next; // .next to avoid that -1 dummy Node
     }
 
-    public  Node mergeSort(Node head) {
+    public Node mergeSort(Node head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -336,6 +336,37 @@ public class LinkedList {
 
         // merge
         return merge(newLeft, newRight);
+    }
+
+    public void zigZag() {
+        // find mid
+        Node mid = getMid(head);
+
+        // 2nd half reverse
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node left = head; // this is left half head
+        Node right = prev; // this is right half head
+        Node nextL, nextR;
+
+        // Alernative merging
+        while (left != null && right != null) {
+            nextL = left.next;
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
+        }
     }
 
     public static void main(String[] args) {
@@ -384,19 +415,32 @@ public class LinkedList {
          * System.out.println(isCycle());
          * removeCycle();
          * System.out.println(isCycle());
+         * 
+         * 
+         * LinkedList ll3 = new LinkedList();
+         * ll3.addFirst(1);
+         * ll3.addFirst(2);
+         * ll3.addFirst(3);
+         * ll3.addFirst(4);
+         * ll3.addFirst(5);
+         * 
+         * // 5->4->3->2->1
+         * 
+         * ll3.print();
+         * ll3.head = ll3.mergeSort(ll3.head); // O(nlogn)
+         * ll3.print();
+         * 
          */
 
-        LinkedList ll3 = new LinkedList();
-        ll3.addFirst(1);
-        ll3.addFirst(2);
-        ll3.addFirst(3);
-        ll3.addFirst(4);
-        ll3.addFirst(5);
+        LinkedList ll4 = new LinkedList();
+        ll4.addLast(1);
+        ll4.addLast(2);
+        ll4.addLast(3);
+        ll4.addLast(4);
+        ll4.addLast(5);
 
-        // 5->4->3->2->1
-
-        ll3.print();
-        ll3.head = ll3.mergeSort(ll3.head); // O(nlogn)
-        ll3.print();
+        ll4.print();
+        ll4.zigZag();
+        ll4.print();
     }
 }
