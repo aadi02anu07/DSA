@@ -1,58 +1,58 @@
+import java.util.*;
 
 public class StackB {
-
-    static class Node {
-        int data;
-        Node next;
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-
-    static class Stack {
-
-        Node head = null;
-
-        public boolean isEmpty() {
-            return head == null;
-        }
-
-        public void push(int data) {
-            Node newNode = new Node(data);
-
-            if (isEmpty()) {
-                head = newNode;
-                return;
-            }
-
-            newNode.next = head;
-            head = newNode;
-        }
-
-        public int pop() {
-            if (isEmpty()) {
-                System.out.println("Stack Underflow");
-                return -1;
-            }
-
-            int top = head.data;
-            head = head.next;
-            return top;
-        }
-
-        public int peek() {
-            if (isEmpty()) {
-                System.out.println("Stack Underflow");
-                return -1;
-            }
-
-            return head.data;
-        }
-    }
-
     /*
+     * static class Node {
+     * int data;
+     * Node next;
+     * 
+     * Node(int data) {
+     * this.data = data;
+     * this.next = null;
+     * }
+     * }
+     * 
+     * static class Stack {
+     * 
+     * Node head = null;
+     * 
+     * public boolean isEmpty() {
+     * return head == null;
+     * }
+     * 
+     * public void push(int data) {
+     * Node newNode = new Node(data);
+     * 
+     * if (isEmpty()) {
+     * head = newNode;
+     * return;
+     * }
+     * 
+     * newNode.next = head;
+     * head = newNode;
+     * }
+     * 
+     * public int pop() {
+     * if (isEmpty()) {
+     * System.out.println("Stack Underflow");
+     * return -1;
+     * }
+     * 
+     * int top = head.data;
+     * head = head.next;
+     * return top;
+     * }
+     * 
+     * public int peek() {
+     * if (isEmpty()) {
+     * System.out.println("Stack Underflow");
+     * return -1;
+     * }
+     * 
+     * return head.data;
+     * }
+     * }
+     * 
      * // implimentaion using ArrayList
      * public static class Stack {
      * ArrayList<Integer> list = new ArrayList<>();
@@ -86,13 +86,27 @@ public class StackB {
      * }
      * }
      */
+    public static void pushtAtBottom(Stack<Integer> s, int data) {
+        // base case
+        if (s.isEmpty()) {
+            s.push(data);
+            return;
+        }
+
+        // recursion
+        int top = s.pop();
+        pushtAtBottom(s, data);
+        s.push(top);
+    }
 
     public static void main(String[] args) {
-        Stack s = new Stack();
+        // Stack s = new Stack();
+        Stack<Integer> s = new Stack<>(); // using java colllection framework
         s.push(1);
         s.push(2);
         s.push(3);
 
+        pushtAtBottom(s, 4);
         while (!s.isEmpty()) {
             System.out.println(s.pop());
         }
