@@ -156,6 +156,64 @@ public class StackB {
         }
     }
 
+    public static boolean isValid(String str) {
+        Stack<Character> s = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (ch == '(' || ch == '{' || ch == '[') { // opening
+                s.push(ch);
+            } else {// closing
+                if (s.isEmpty()) {
+                    return false;
+                }
+                if (s.peek() == '(' && ch == ')' ||
+                        s.peek() == '{' && ch == '}' ||
+                        s.peek() == '[' && ch == ']') {
+                    s.pop();
+                } else {
+                    return false;
+                }
+            }
+        }
+        if (s.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isDuplicate(String str) {
+        Stack<Character> s = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            // opening,operator,operand
+            // closing
+            if (ch == ')') {
+                int count = 0;
+                while (s.peek() != '(') {
+                    // we can directly pop here and then compact the code cause poping here will
+                    // return the value poped
+
+                    // we are not using "!s.isEmpty && " cause it is already given that it is a
+                    // valid string
+                    s.pop();
+                    count++;
+                }
+                if (count < 1) {
+                    return true; // duplicate exists
+                } else {
+                    s.pop(); // pop opening pair
+                }
+            } else {
+                // opening
+                s.push(ch);
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         // Stack s = new Stack();
         // Stack<Integer> s = new Stack<>(); // using java colllection framework
@@ -181,29 +239,35 @@ public class StackB {
         // for (int i = 0; i < span.length; i++) {
         // System.out.println(span[i] + " ");
         // }
-        int arr[] = { 6, 8, 0, 1, 3 };
-        Stack<Integer> s = new Stack<>();
-        int nextGreater[] = new int[arr.length];
+        // int arr[] = { 6, 8, 0, 1, 3 };
+        // Stack<Integer> s = new Stack<>();
+        // int nextGreater[] = new int[arr.length];
 
-        for (int i = arr.length - 1; i >= 0; i--) {
-            // while
-            while (!s.isEmpty() && arr[s.peek()] <= arr[i]) {
-                s.pop();
-            }
-            // if-else
-            if (s.isEmpty()) {
-                nextGreater[i] = -1;
-            } else {
-                nextGreater[i] = arr[s.peek()];
-            }
+        // for (int i = arr.length - 1; i >= 0; i--) {
+        // // while
+        // while (!s.isEmpty() && arr[s.peek()] <= arr[i]) {
+        // s.pop();
+        // }
+        // // if-else
+        // if (s.isEmpty()) {
+        // nextGreater[i] = -1;
+        // } else {
+        // nextGreater[i] = arr[s.peek()];
+        // }
 
-            // push in stack
-            s.push(i);
-        }
+        // // push in stack
+        // s.push(i);
+        // }
 
-        for (int i = 0; i < nextGreater.length; i++) {
-            System.out.print(nextGreater[i] + " ");
-        }
-        System.out.println();
+        // for (int i = 0; i < nextGreater.length; i++) {
+        // System.out.print(nextGreater[i] + " ");
+        // }
+        // System.out.println();
+
+        // String str = "({})[]";
+        String str1 = "((a+b))"; // true
+        String str2 = "(a-b)"; // false
+        System.out.println(isDuplicate(str1));
+        System.out.println(isDuplicate(str2));
     }
 }
