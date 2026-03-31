@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class QueueE {
+    static class Queue {
+        static Stack<Integer> s1 = new Stack<>();
+        static Stack<Integer> s2 = new Stack<>();
+
+        public boolean isEmpty() {
+            return s1.isEmpty();
+        }
+
+        // add - O(n)
+        public void add(int data) {
+            // transfering from stack 1 to stack 2
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+
+            // pushing at bottom of stack 1
+            s1.push(data);
+
+            // transfering from stack 2 to stack 1
+            while (!s2.isEmpty()) {
+                s1.push(s2.pop());
+            }
+        }
+
+        // remove - O(1)
+        public int remove() {
+            if (isEmpty()) {
+                System.out.println("Queue is empty");
+                return -1;
+            }
+            return s1.pop();
+
+        }
+
+        // peek - O(1)
+        public int peek() {
+            if (isEmpty()) {
+                System.out.println("Queue is empty");
+                return -1;
+            }
+            return s1.peek();
+        }
+    }
+
+    public static void main(String args[]) {
+        Queue q = new Queue();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+
+        while (!q.isEmpty()) {
+            System.out.println(q.peek());
+            q.remove();
+        }
+    }
+}
