@@ -138,34 +138,69 @@ public class ClassroomGreedy {
          * System.out.print(ans.get(i)+" ");
          * }
          * System.out.println();
+         * int jobsInfo[][] = { { 4, 20 }, { 1, 10 }, { 1, 40 }, { 1, 30 } };
+         * 
+         * ArrayList<Job> jobs = new ArrayList<>();
+         * 
+         * for (int i = 0; i < jobsInfo.length; i++) {
+         * jobs.add(new Job(i, jobsInfo[i][0], jobsInfo[i][1]));
+         * }
+         * 
+         * Collections.sort(jobs, (obj1, obj2) -> obj2.profit - obj1.profit);//
+         * "obj2.profit - obj1.profit" ->
+         * // this will sort it in descending order of
+         * // profit
+         * 
+         * ArrayList<Integer> seq = new ArrayList<>();
+         * int time = 0;
+         * for (int i = 0; i < jobs.size(); i++) {
+         * Job curr = jobs.get(i);
+         * if (curr.deadline > time) {
+         * seq.add(curr.id);
+         * time++;
+         * }
+         * }
+         * 
+         * // print seq
+         * System.out.println("Max jobs = " + seq.size());
+         * for (int i = 0; i < seq.size(); i++) {
+         * System.out.print(seq.get(i) + " ");
+         * }
+         * System.out.println();
          */
-        int jobsInfo[][] = { { 4, 20 }, { 1, 10 }, { 1, 40 }, { 1, 30 } };
 
-        ArrayList<Job> jobs = new ArrayList<>();
+        Integer costVer[] = { 2, 1, 3, 1, 4 };
+        Integer costHor[] = { 4, 1, 2 };
 
-        for (int i = 0; i < jobsInfo.length; i++) {
-            jobs.add(new Job(i, jobsInfo[i][0], jobsInfo[i][1]));
-        }
+        Arrays.sort(costVer, Collections.reverseOrder());
+        Arrays.sort(costHor, Collections.reverseOrder());
 
-        Collections.sort(jobs, (obj1, obj2) -> obj2.profit - obj1.profit);// "obj2.profit - obj1.profit" ->
-                                                                          // this will sort it in descending order of
-                                                                          // profit
+        int h = 0, v = 0;
+        int hp = 1, vp = 1;
+        int cost = 0;
 
-        ArrayList<Integer> seq = new ArrayList<>();
-        int time = 0;
-        for (int i = 0; i < jobs.size(); i++) {
-            Job curr = jobs.get(i);
-            if (curr.deadline > time) {
-                seq.add(curr.id);
-                time++;
+        while (h < costHor.length && v < costVer.length) {
+            // verical cost < horizontal cost
+            if (costVer[v] <= costHor[h]) { // horizontal cut
+                cost += (costHor[h] * vp);
+                hp++;
+                h++;
+            } else {// vertical cut
+                cost += (costVer[v] * hp);
+                vp++;
+                v++;
             }
         }
-
-        // print seq
-        System.out.println("Max jobs = " + seq.size());
-        for (int i = 0; i < seq.size(); i++) {
-            System.out.print(seq.get(i) + " ");
+        while (h < costHor.length) {
+            cost += (costHor[h] * vp);
+            hp++;
+            h++;
         }
-        System.out.println();
+        while (v < costVer.length) {
+            cost += (costVer[v] * hp);
+            vp++;
+            v++;
+        }
+        System.out.println("Minimum cost of cuts = " + cost);
     }
 }
