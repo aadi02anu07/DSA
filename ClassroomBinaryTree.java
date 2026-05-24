@@ -281,8 +281,35 @@ public class ClassroomBinaryTree {
         if (max + 1 == k) {
             return root.data;
         }
-        return max+1;
+        return max + 1;
+    }
 
+    public static int sumTree(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftChild = sumTree(root.left);
+        int rightChild = sumTree(root.right);
+
+        int data = root.data;
+
+        int newLeft = root.left == null ? 0 : root.left.data;
+        int newRight = root.right == null ? 0 : root.right.data;
+
+        root.data = newLeft + leftChild + newRight + rightChild;
+        return data;
+    }
+
+    // Pre order print function
+    public static void preOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        System.out.print(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
     }
 
     public static void main(String args[]) {
@@ -331,7 +358,34 @@ public class ClassroomBinaryTree {
         // System.out.println("Minimum distance between " + n1 + " & " + n2 + " = " +
         // mindDist(root, n1, n2));
 
-        int n = 5, k = 2; // find 2nd ancestor of 5
-        System.out.println(Kancestor(root, n, k));
+        // int n = 5, k = 2; // find 2nd ancestor of 5
+        // System.out.println(Kancestor(root, n, k));
+
+        Node root1 = new Node(10);
+        root1.left = new Node(-2);
+        root1.right = new Node(6);
+        root1.left.left = new Node(8);
+        root1.left.right = new Node(-4);
+        root1.right.left = new Node(7);
+        root1.right.right = new Node(5);
+
+        /*
+         * 10
+         * / \
+         * -2 6
+         * / \ / \
+         * 8 -4 7 5
+         * 
+         * Expected Sum Tree:
+         * 
+         * 20
+         * / \
+         * 4 12
+         * / \ / \
+         * 0 0 0 0
+         */
+
+        sumTree(root1);
+        preOrder(root1);
     }
 }
