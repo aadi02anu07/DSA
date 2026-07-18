@@ -115,6 +115,42 @@ public class ClassroomBST {
         return new Info(false, size, min, max);
     }
 
+    public static Node mergeBST(Node root1, Node root2) {
+        // step 1
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        getInorder(root1, arr1);
+
+        // step 2
+        ArrayList<Integer> arr2 = new ArrayList<>();
+        getInorder(root2, arr2);
+
+        // merge
+        int i = 0, j = 0;
+        ArrayList<Integer> finalArr = new ArrayList<>();
+        while (i < arr1.size() && j < arr2.size()) {
+            if (arr1.get(i) < arr2.get(j)) {
+                finalArr.add(arr1.get(i));
+                i++;
+            } else {
+                finalArr.add(arr2.get(j));
+                j++;
+            }
+        }
+
+        while (i < arr1.size()) {
+            finalArr.add(arr1.get(i));
+            i++;
+        }
+
+        while (j < arr2.size()) {
+            finalArr.add(arr2.get(j));
+            j++;
+        }
+
+        // sorted ArrayList -> Balance BST
+        return createBST(finalArr, 0, finalArr.size() - 1);
+    }
+
     public static void main(String[] args) {
         /*
          * 8
@@ -188,7 +224,7 @@ public class ClassroomBST {
         // root = balanceBST(root);
         // preOrder(root);
 
-        // Size of largest BST
+        // ********************Size of largest BST********************
         /*
          * 50
          * / \
@@ -201,17 +237,17 @@ public class ClassroomBST {
          * Given BT
          */
 
-        Node root = new Node(50);
+        // Node root = new Node(50);
 
-        root.left = new Node(30);
-        root.left.left = new Node(5);
-        root.left.right = new Node(20);
+        // root.left = new Node(30);
+        // root.left.left = new Node(5);
+        // root.left.right = new Node(20);
 
-        root.right = new Node(60);
-        root.right.left = new Node(45);
-        root.right.right = new Node(70);
-        root.right.right.left = new Node(65);
-        root.right.right.right = new Node(80);
+        // root.right = new Node(60);
+        // root.right.left = new Node(45);
+        // root.right.right = new Node(70);
+        // root.right.right.left = new Node(65);
+        // root.right.right.right = new Node(80);
 
         /*
          * 60
@@ -223,7 +259,44 @@ public class ClassroomBST {
          * Expected BST : Size = 5
          */
 
-        Info info = largestBST(root);
-        System.out.println("Largest BST size = " + maxBST);
+        // Info info = largestBST(root);
+        // System.out.println("Largest BST size = " + maxBST);
+
+        // ******************************Merge 2 BSTs******************************
+        /*
+         * 2
+         * / \
+         * 1 4
+         * 
+         * BST1
+         */
+
+        Node root1 = new Node(2);
+        root1.left = new Node(1);
+        root1.right = new Node(4);
+
+        /*
+         * 9
+         * / \
+         * 3 12
+         * 
+         * BST2
+         */
+
+        Node root2 = new Node(9);
+        root2.left = new Node(3);
+        root2.right = new Node(12);
+
+        /*
+         * 3
+         * / \
+         * 1 9
+         * \ / \
+         * 2 4 12
+         * 
+         * Final Answer: BST
+         */
+        Node root = mergeBST(root1, root2);
+        preOrder(root);
     }
 }
