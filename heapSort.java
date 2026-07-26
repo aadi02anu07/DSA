@@ -1,4 +1,6 @@
+import java.security.ProviderException;
 import java.util.*;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class heapSort {
     public static void heapify(int arr[], int i, int size) {
@@ -82,6 +84,24 @@ public class heapSort {
         }
     }
 
+    // Sliding Window maximum
+    static class Pair implements Comparable<Pair> {
+        int val;
+        int idx;
+
+        public Pair(int val, int idx) {
+            this.val = val;
+            this.idx = idx;
+        }
+
+        @Override
+        public int compareTo(Pair p2) {
+            // ascending -> return this.value-p2.value;
+            // descending
+            return p2.val - this.val;
+        }
+    }
+
     public static void main(String[] args) {
         /*
          * int arr[] = { 1, 2, 4, 5, 3 };
@@ -127,25 +147,54 @@ public class heapSort {
          * }
          * 
          * System.out.println("Cost of connectiong N ropes = " + cost);
+         * 
+         * // Weakest Soldier
+         * int army[][] = { { 1, 0, 0, 0 },
+         * { 1, 1, 1, 1 },
+         * { 1, 0, 0, 0 },
+         * { 1, 0, 0, 0 } };
+         * int k = 2;
+         * PriorityQueue<Row> pq = new PriorityQueue<>();
+         * for (int i = 0; i < army.length; i++) {
+         * int count = 0;
+         * for (int j = 0; j < army[0].length; j++) {
+         * count += army[i][j] == 1 ? 1 : 0;
+         * }
+         * pq.add(new Row(count, i));
+         * }
+         * 
+         * for (int i = 0; i < k; i++) {
+         * System.out.println("R" + pq.remove().idx);
+         * }
          */
 
-        // Weakest Soldier
-        int army[][] = { { 1, 0, 0, 0 },
-                { 1, 1, 1, 1 },
-                { 1, 0, 0, 0 },
-                { 1, 0, 0, 0 } };
-        int k = 2;
-        PriorityQueue<Row> pq = new PriorityQueue<>();
-        for (int i = 0; i < army.length; i++) {
-            int count = 0;
-            for (int j = 0; j < army[0].length; j++) {
-                count += army[i][j] == 1 ? 1 : 0;
-            }
-            pq.add(new Row(count, i));
+        // Sliding window maximum
+        int arr[] = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        int k = 3;
+        int res[] = new int[arr.length - k + 1];
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        // 1st window
+        for (int i = 0; i < k; i++) {
+            pq.add(new Pair(arr[i], i));
         }
 
-        for (int i = 0; i < k; i++) {
-            System.out.println("R" + pq.remove().idx);
+        res[0] = pq.peek().val;
+
+        for (int i = k; i < arr.length; i++) {
+            while (pq.size() > 0 && pq.peek().idx <= (i - k)) {
+                pq.remove();
+            }
+
+            pq.add(new Pair(arr[i], i));
+            res[i - k + 1] = pq.peek().val;
         }
+
+        // print result
+        for (int i = 0; i < res.length; i++) {
+            System.out.print(res[i] + " ");
+        }
+        System.out.println();
     }
 }
