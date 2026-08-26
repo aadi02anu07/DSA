@@ -228,7 +228,6 @@ public class ClassroomBinaryTree {
         if (leftLca == null) {
             return rightLca;
         }
-
         return root;
     }
 
