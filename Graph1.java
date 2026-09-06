@@ -43,10 +43,18 @@ public class Graph1 {
         graph[6].add(new Edge(6, 5, 1));
     }
 
-    public static void BFS(ArrayList<Edge>[] graph) { // O(V+E) // V= no. of vertices and E=no. of Edges || for matrice
-                                                      // it is O(V^2)
-        Queue<Integer> q = new LinkedList<>();
+    public static void BFS(ArrayList<Edge>[] graph) {
         boolean vis[] = new boolean[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            if (!vis[i]) {
+                BFSutil(graph, vis);
+            }
+        }
+    }
+
+    public static void BFSutil(ArrayList<Edge>[] graph, boolean vis[]) { // O(V+E) // V= no. of vertices and E=no. of
+                                                                         // Edges || for matrice it is O(V^2)
+        Queue<Integer> q = new LinkedList<>();
         q.add(0); // source=0
 
         while (!q.isEmpty()) {
@@ -63,7 +71,14 @@ public class Graph1 {
         }
     }
 
-    public static void DFS(ArrayList<Edge>[] graph, int curr, boolean vis[]) { // O(V+E)
+    public static void DFS(ArrayList<Edge>[] graph) {
+        boolean vis[] = new boolean[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            DFSutil(graph, i, vis);
+        }
+    }
+
+    public static void DFSutil(ArrayList<Edge>[] graph, int curr, boolean vis[]) { // O(V+E)
         // visit
         System.out.print(curr + " ");
         vis[curr] = true;
@@ -71,7 +86,7 @@ public class Graph1 {
         for (int i = 0; i < graph[curr].size(); i++) {
             Edge e = graph[curr].get(i);
             if (!vis[e.dest]) {
-                DFS(graph, e.dest, vis);
+                DFSutil(graph, e.dest, vis);
             }
         }
     }
