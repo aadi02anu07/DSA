@@ -1,4 +1,4 @@
-public class LinkedList {
+public class LinkedList1 {
     public static class Node {
         int data;
         Node next;
@@ -432,7 +432,7 @@ public class LinkedList {
          * 
          */
 
-        LinkedList ll4 = new LinkedList();
+        LinkedList1 ll4 = new LinkedList1();
         ll4.addLast(1);
         ll4.addLast(2);
         ll4.addLast(3);
